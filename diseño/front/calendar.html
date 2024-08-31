@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu de reservas</title>
+
+    <link rel="stylesheet" href="estilos.css">
+  </head>
+  <body>
+
+    <nav id="navbar">
+        <ul>
+            <li><a id="calendarLink">Calendario</a></li>
+            <li><a id="settingsLink">Configuración</a></li>
+            <li><a id="adminLink" style="display: none;">Configuración avanzada</a></li>
+            <li><a id="sesionLink">Cerrar sesión</a></li>
+        </ul>
+    </nav>
+
+    <div id="container">
+      <div id ="calendarioConteiner">
+        <div id="header">
+          <div id="monthDisplay"></div>
+          <div id="botonera">
+            <button id="cancelarButton">CancelarTurno</button>
+            <button id="backButton">Anterior</button>
+            <button id="nextButton">Siguiente</button>
+          </div>
+        </div>
+
+        <div id="weekdays">
+          <div>Domingo</div>
+          <div>Lunes</div>
+          <div>Martes</div>
+          <div>Miercoles</div>
+          <div>Jueves</div>
+          <div>Viernes</div>
+          <div>Sabado</div>
+        </div>
+
+        <div id="calendar"></div>
+      </div>
+
+      <div id="configuraciones" style="display: none;">
+        <h2>Configuración del Usuario</h2>
+        <div id="userDetails">
+          <div class="userDetail">
+            <span>Nombre de Usuario:</span>
+            <span id="usernameDisplay"></span>
+            <button id="editUsername">Editar</button>
+          </div>
+          <div class="userDetail">
+            <span>Correo Electrónico:</span>
+            <span id="emailDisplay"></span>
+            <!-- <button id="editEmail" >Editar</button> -->
+          </div>
+          <div class="userDetail">
+            <span>Telefono:</span>
+            <span id="phoneDisplay"></span>
+            <button  id="editTelefono">Editar</button>
+          </div>
+          <button id="editPass">Cambiar contraseña</button>
+        </div>
+      </div>
+      
+      <div id="adminConteiner" style="display: none;">
+        <h2>Configuración de las reservas</h2>
+        <div id="conteinerCategorias">
+          <div id="categoriaDetalles">
+            <div>
+              <span>Horario:</span>
+              <span id="horarioDisplay1"></span>
+            </div>
+            <div>
+              <span>Precio:</span>
+              <span id="precioDisplay1"></span>
+            </div>
+            <button id="editCategoria1">Editar</button>
+          </div>
+
+          <div id="categoriaDetalles">
+            <div>
+              <span>Horario:</span>
+              <span id="horarioDisplay2"></span>
+            </div>
+            <div>
+              <span>Precio:</span>
+              <span id="precioDisplay2"></span>
+            </div>
+            <button id="editCategoria2">Editar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+
+    <div id="newEventModal" >
+      <h2>¿Que turno le gustaria reservar?</h2>
+
+      <div id="eventOptions">
+
+      </div>
+      <input id="eventTitleInput" placeholder="Turno a elegir" readonly />
+      
+      <div id="existingEvents">
+        <h3>Turnos reservados:</h3>
+        <ul id="eventList">
+          <!-- Los detalles de los eventos se llenarán aquí -->
+        </ul>
+      </div>
+      <div id="botonera">
+        <button id="saveButton">Guardar</button>
+        <button id="cancelButton">Cancelar</button>
+      </div>
+    </div>
+
+    
+
+    <div id="modalBackDrop"></div>
+    
+    <div id="errorModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p id="errorMessage"></p>
+      </div>
+    </div>
+    
+    <div id="messageBox">
+      <div id="messageBoxHeader">
+        <span>Ingrese sus nuevos datos y confirme su contraseña</span>
+      </div>
+      <div id="messageBoxDatos">
+        <input id="datosConfig">
+        <input id="passConfig" type="password" placeholder="Ingrese su contraseña">
+      </div>
+      <div id="botonera">
+        <button id="saveButtonConfig">Guardar</button>
+        <button id="cancelButtonConfig">Cancelar</button>
+      </div>
+    </div>
+
+    <div id="messageBoxCategoria">
+      <div id="messageBoxCategoriaHeader">
+        <span>Ingrese los nuevos datos para la reserva, en caso de no querer modificar uno de los datos, deje el campo vacio</span>
+      </div>
+      <div id="messageBoxCategoriaDatos">
+        <input id="categoriaConfigNombre" placeholder="Ingrese el nuevo nombre">
+        <input id="categoriaConfigPrecio" placeholder="Ingrese el nuevo precio">
+      </div>
+      <div id="botonera">
+        <button id="saveButtonCategoriaConfig">Guardar</button>
+        <button id="cancelButtonCategoriaConfig">Cancelar</button>
+      </div>
+    </div>
+
+    <div id="loading-spinner" class="spinner" style="display: none;">
+      <!-- Aquí puedes poner un spinner, imagen o texto de carga -->
+      <div class="loader"></div>
+    </div>
+
+    <script src="./calendar.js"></script>
+    <script src="./scripst.js"></script>
+  </body>
+</html>
