@@ -1,6 +1,6 @@
 from api import app
 from flask import jsonify, request
-from api.utils import token_required, send_reservation_email
+from api.utils import token_required, send_reservation_email, send_notification_email
 from api.db.db import mysql
 from api.models.turnos import Turnos
 from datetime import datetime
@@ -70,6 +70,8 @@ def nuevoEvento():
     obj.idUsuario = cliente[1] 
     
     send_reservation_email(cliente[3], obj, "confirmada")
+    
+    send_notification_email(obj, "confirmada")
     mysql.connection.commit()
     cur.close()
     return jsonify({"message": "Evento añadido"}), 201
@@ -124,7 +126,8 @@ def cancelarTurno(id):
     obj.idUsuario = cliente[1] 
     
     send_reservation_email(cliente[3], obj, "cancelada")
-
+    send_notification_email(obj, "cancelada")
+    
     cur.execute('DELETE FROM turnos WHERE idCliente = %s AND activo = %s',(id, True))
     cur.execute('UPDATE cliente SET turnoActivo = %s WHERE id = %s',(False, id))
 

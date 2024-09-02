@@ -10,7 +10,12 @@ app.config['SECRET_KEY'] = 'app_pass'
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('login.html')
+
+@app.route('/calendar')
+def redirigir():
+
+    return render_template('calendar.html')
 
 import api.rouetes.categoriaTurnos
 import api.rouetes.event

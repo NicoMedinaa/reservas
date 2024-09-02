@@ -40,8 +40,8 @@ def inicioSesion():
     token = jwt.encode({'id': row[0], 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=100)}, app.config['SECRET_KEY'])
     mysql.connection.commit()
     cur.close()
+    render_template('calendar.html')
     return jsonify({"token": token, "username": auth.username , "id": row[0]}), 200
-
 
 
 @app.route('/register', methods=['POST'])

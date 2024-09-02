@@ -39,7 +39,7 @@ def token_required(func):
 
 def send_reservation_email(to_email, datos, mensaje):
     sender_email = "bolibearrodrgez@gmail.com"
-    password = ""
+    password = "gvti wawk fikn ogex"
 
     message = MIMEMultipart("alternative")
     message["Subject"] = "Confirmación de Reserva"
@@ -64,9 +64,9 @@ def send_reservation_email(to_email, datos, mensaje):
         print(f"Error al enviar el correo: {e}")
 
 def send_notification_email(datos, mensaje):
-    sender_email = "bolibearrodrgez@gmail.com"
-    password = "gvti wawk fikn ogex"
-    to_email = ""
+    sender_email = "edificio325puntaalta@gmail.com"
+    password = "aguu qotp meqp wkwv"
+    to_email = "raulpellerito@gmail.com"
 
     message = MIMEMultipart("alternative")
     message["Subject"] = "Confirmación de Reserva"
@@ -95,10 +95,10 @@ def generate_confirmation_token(email):
     return serializer.dumps(email, salt='email-confirmation-salt')
 
 def send_verification_email(to_email, token):
-    sender_email = "bolibearrodrgez@gmail.com"
-    password = "gvti wawk fikn ogex"
+    sender_email = "edificio325puntaalta@gmail.com"
+    password = "aguu qotp meqp wkwv"
 
-    verification_link = f"http://127.0.0.1:5000/verify/{token}"
+    verification_link = f"Edificio325.com.ar/verify/{token}"
 
     message = MIMEMultipart("alternative")
     message["Subject"] = "Verifica tu correo electrónico"
