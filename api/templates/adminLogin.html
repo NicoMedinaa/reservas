@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edificio 325</title>
+    <link href="{{ url_for('static', filename='loginAdmin/estilos.css') }}" rel="stylesheet">
+    
+    <style>
+        body {
+            background-image: url("{{ url_for('static', filename='imagenes/frente.jfif') }}");
+
+        }
+    </style>
+
+</head>
+<body>
+
+    <main>
+
+        <div class="contenedor__todo">
+
+            <!--Formulario de Login y registro-->
+            <div class="contenedor__login-register">
+                <!--Login-->
+
+                    <form action="" class="formulario__login">
+                        <h2>Iniciar Sesión</h2>
+                        <input type="text" placeholder="Correo Electrónico" id="in-email">
+                        <input type="password" placeholder="Contraseña" id="in-password">
+                        <span id ="message"></span>
+                        <div id="botonera">
+                            <button type="button" onclick="iniciarSesion()">Entrar</button>
+                        </div>
+                        
+                        <!-- <input type="button" onclick="iniciarSesion()" value="Iniciar sesion"> -->
+                    </form>
+
+
+            </div>
+        </div>
+        <div id="loading-spinner" class="spinner" style="display: none;">
+            <!-- Aquí puedes poner un spinner, imagen o texto de carga -->
+            <div class="loader"></div>
+        </div>
+
+        <div id="emergente" class="modal">
+            <div class="modal-content">
+              <span class="close">&times;</span>
+              <p id="errorMessage"></p>
+            </div>
+        </div>
+
+
+    </main>
+
+    <script src="{{ url_for('static', filename='loginAdmin/scriptsAdmin.js') }}"></script>
+</body>
+</html>

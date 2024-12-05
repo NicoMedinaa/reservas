@@ -1,0 +1,366 @@
+body {
+    display: flex;
+    margin-top: 90px;
+    justify-content: center;
+    background-color: #FFFCFF;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+
+#navbar {
+    position: fixed;
+    cursor: pointer;
+    top: 0;
+    width: 100%;
+    background-color: #92a1d1;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+    display: inline-flex;
+    justify-content: center;
+    padding: 10px 20px;
+    font-family: sans-serif;
+    color: white;
+}
+  
+#navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+  
+#navbar ul li {
+    margin-right: 20px;
+}
+  
+#navbar ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+  
+#navbar ul li a:hover {
+    color: #d36c6c;
+}
+  
+#navbar ul li i {
+    display: none;
+}
+
+button {
+    max-width: 75px;
+    cursor: pointer;
+    box-shadow: 0px 0px 2px gray;
+    border: none;
+    outline: none;
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+    margin-right: 5px;
+    background-color:#92a1d1;
+}
+
+#botonera{
+    flex-direction: row;
+    display: flex;
+}
+  
+#botonera i {
+    display: none;
+}
+  
+#container {
+    display: none;
+    max-width: 770px;
+    width: 100%;
+    height: max-content;
+    background-color: #e0e0e0;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+#conteinerCategorias{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#messageBoxCategoria {
+    display: none;
+    position: fixed;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    max-width: 400px;
+    margin: auto;
+}
+
+.spinner {
+    position: fixed;
+    top: 34%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+}
+  
+.loader {
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+}
+
+.modal {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+  
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+  
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#agragarDocumento, #agragarRubro, #editarRubro {
+    display: none;
+    position: fixed;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    max-width: 300px;
+    width: 100%;
+    margin: auto;
+}
+  
+#agragarDocumento input {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    width: 90%;
+    border: 1px solid #ccc;
+    box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+  
+#agragarDocumento input:focus {
+    border-color: #247BA0;
+    box-shadow: inset 0px 1px 5px rgba(0, 0, 0, 0.2);
+    outline: none;
+}
+
+/* Estilo para cada item */
+.item {
+
+    color: #000;
+  
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+  
+/* Texto resaltado */
+.item p {
+    font-size: 16px;
+    font-weight: bold;
+    color: #000;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+  
+  /* Estilo para el botón de eliminar */
+.item button {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+#containerDni{
+    overflow-y: auto; /* Habilitar el scroll si es necesario */
+    max-height: 60vh; /* Limitar el alto para que no cubra toda la pantalla */
+}
+
+#nuevoDocumento.error , #nombreRubro.error, #nombreEditarRubro.error{
+    border: 2px solid red;
+}
+
+#containerGastos {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Encabezado */
+#containerGastosHeader h2 {
+    text-align: center;
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Botón Agregar Rubro */
+#agregarRubro {
+    background-color: #2196F3;
+}
+
+#agregarRubro:hover {
+    background-color: #0b7dda;
+}
+
+/* Estilos para los selectores */
+label {
+    font-size: 16px;
+    margin-right: 8px;
+    color: #333;
+}
+
+select {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    margin-right: 10px;
+    margin-bottom: 15px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+select:focus {
+    border-color: #4CAF50;
+}
+
+/* Contenedor de la tabla */
+#table-container {
+    margin-top: 20px;
+}
+
+/* Estilos de la tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th, td {
+    text-align: left;
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f2f2f2;
+    color: #333;
+    font-weight: bold;
+}
+
+td[contenteditable="true"] {
+    background-color: #fff7e6;
+}
+
+tr:hover td {
+    background-color: #f1f1f1;
+}
+
+/* Estilo para el botón de Guardar */
+#saveTable {
+    background-color: #FF5722;
+}
+
+#saveTable:hover {
+    background-color: #e64a19;
+}
+
+@media (max-width: 500px) {
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+
+    /* Ocultar el encabezado de la tabla en dispositivos pequeños */
+    thead tr {
+        display: none;
+    }
+
+    /* Estilo para las filas de la tabla en dispositivos pequeños */
+    tr {
+        margin-bottom: 15px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    /* Mostrar etiquetas para cada celda en dispositivos pequeños */
+    td {
+        display: flex;
+        justify-content: space-between;
+        padding-left: 50%;
+        position: relative;
+        text-align: right;
+    }
+
+    /* Mostrar la etiqueta de la celda */
+    td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 45%;
+        padding-left: 15px;
+        font-weight: bold;
+        text-align: left;
+    }
+}
+
+@media (max-width: 480px) {
+  
+    #navbar ul li i {
+      display: inline-block;
+    }
+  
+    #navbar a span {
+      display: none;
+    }
+  
+  }

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Edificio 325</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='front/estilos.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='imagenes/favicon.ico') }}" type="image/x-icon">
+  </head>
+  <body>
+
+    <nav id="navbar">
+        <ul>
+            <li><a id="calendarLink"><span>Calendario</span><i class="fa-solid fa-calendar-days"></i></a></li>
+            <li><a id="gastosLink"><span>Gastos comunes</span><i class="fa-solid fa-money-bill"></i></a></li>
+            <li><a id="settingsLink"><span>Configuración</span><i class="fa-solid fa-gear"></i></a></li>
+            <li><a id="reglamentoLink"><span>Reglamento</span><i class="fa-solid fa-file-word"></i></a></li>
+            <li><a id="sesionLink"><span>Cerrar sesión</span><i class="fa-solid fa-right-from-bracket"></i></a></li>
+        </ul>
+    </nav>
+
+    <div id="container">
+      <div id ="calendarioConteiner">
+        <div id="header">
+          <div id="monthDisplay"></div>
+          <div id="botonera">
+            <button id="cancelarButton"><span>Cancelar Turno</span><i class="fa-solid fa-ban"></i></button>
+            <button id="backButton"><span>Anterior</span><i class="fa-solid fa-arrow-left"></i></button>
+            <button id="nextButton"><span>Siguiente</span><i class="fa-solid fa-arrow-right"></i></button>
+          </div>
+        </div>
+
+        <div id="weekdays">
+          <div>Domingo</div>
+          <div>Lunes</div>
+          <div>Martes</div>
+          <div>Miercoles</div>
+          <div>Jueves</div>
+          <div>Viernes</div>
+          <div>Sabado</div>
+        </div>
+
+        <div id="calendar"></div>
+      </div>
+
+      <div id="containerGastos" style="display: none;">
+        <div id="containerGastosHeader">
+          <h2>Gastos Comunes</h2>
+        </div>
+        
+
+        <label for="month-select">Mes:</label>
+        <select id="month-select">
+            <option value="">Seleccionar Mes</option>
+            <option value="1">Enero</option>
+            <option value="2">Febrero</option>
+            <option value="3">Marzo</option>
+            <option value="4">Abril</option>
+            <option value="5">Mayo</option>
+            <option value="6">Junio</option>
+            <option value="7">Julio</option>
+            <option value="8">Agosto</option>
+            <option value="9">Septiembre</option>
+            <option value="10">Octubre</option>
+            <option value="11">Noviembre</option>
+            <option value="12">Diciembre</option>
+        </select>
+
+        <label for="year-select">Año:</label>
+        <select id="year-select">
+            <option value="">Seleccionar Año</option>
+        </select>
+
+        <button id="generate-table">Ver</button>
+        <div id="table-container"></div>
+      </div>
+
+      <div id="configuraciones" style="display: none;">
+        <h2>Configuración del Usuario</h2>
+        <div id="userDetails">
+          <div class="userDetail">
+            <span>Nombre de Usuario:</span>
+            <span id="usernameDisplay"></span>
+            <button id="editUsername">Editar</button>
+          </div>
+          <div class="userDetail">
+            <span>Correo Electrónico:</span>
+            <span id="emailDisplay"></span>
+            <!-- <button id="editEmail" >Editar</button> -->
+          </div>
+          <div class="userDetail">
+            <span>Telefono:</span>
+            <span id="phoneDisplay"></span>
+            <button id="editTelefono">Editar</button>
+          </div>
+          <div class="userDetail">
+            <span>Departamento Nro:</span>
+            <span id="dptoDisplay"></span>
+          </div>
+          <div class="userDetail">
+            <span>DNI:</span>
+            <span id="dniDisplay"></span>
+          </div>
+          <button id="editPass">Cambiar contraseña</button>
+        </div>
+      </div>
+
+      <div id="reglamentoContainer" style="display: none;">
+        <h1>Reglamento de Convivencia - Edificio 325</h1>
+
+        <h2>QUINCHO</h2>
+
+        <div class="section-title">Turnos</div>
+        <p>A través de la web <a href="https://www.edificio325.com.ar" target="_blank">www.edificio325.com.ar</a> se podrá reservar turno para el uso del quincho.</p>
+        <p>Se podrá reservar solo un turno a la vez, una vez cumplido el turno reservado se podrá hacer la nueva reserva.</p>
+
+        <div class="section-title">Horario de uso</div>
+        <ul>
+            <li>Medio día: desde las 11:00 hs hasta las 16:00 hs</li>
+            <li>Noche: desde las 19:00 hs hasta las 00:00 hs</li>
+        </ul>
+
+        <div class="section-title">Cantidad de ocupantes</div>
+        <p>El quincho tiene una capacidad máxima de 12 personas y cuenta con mesa, sillas y vajilla para esa cantidad exacta.</p>
+
+        <div class="section-title">Limpieza</div>
+        <p>El quincho deberá entregarse a la hora indicada del turno con todo su mobiliario en orden y la vajilla dispuesta en la mesada para su limpieza.</p>
+        <p>El costo de la limpieza se aplicará al cobro del alquiler del mes siguiente.</p>
+
+        <div class="section-title">Roturas y daños</div>
+        <p>Una vez finalizado el turno, el propietario o quien él designe inspeccionará el estado de conservación de las instalaciones y sus componentes.</p>
+        <p>Ante cualquier falta, rotura o daño en las instalaciones, muebles, vajilla y utensilios, se aplicará el valor de mercado para su reparación o reposición en el alquiler del mes siguiente.</p>
+
+        <div class="section-title">Artículos que se proveen</div>
+        <ul>
+            <li>Esponja</li>
+            <li>Detergente</li>
+            <li>Escobillón</li>
+            <li>Pala de residuos</li>
+            <li>Sesto de residuos</li>
+            <li>Una bolsa chica</li>
+            <li>Una bolsa de consorcio</li>
+            <li>Jabón líquido</li>
+            <li>Papel higiénico</li>
+        </ul>
+
+        <div class="section-title">Artículos que no se proveen</div>
+        <ul>
+            <li>Toallas para el baño</li>
+            <li>Repasadores</li>
+        </ul>
+
+        <div class="section-title">Reglas de convivencia para el quincho y los espacios comunes</div>
+        <ol>
+            <li>Respetar los horarios de inicio y fin del turno del quincho.</li>
+            <li>Circular por las escaleras y espacios comunes en silencio en los horarios estipulados como de descanso: de 22:00 hs a 08:00 hs.</li>
+            <li>Mantener el orden y la limpieza en los espacios comunes.</li>
+        </ol>
+
+        <h2>COCHERAS</h2>
+        <p>El uso de la cochera es exclusivo para los inquilinos que tengan cocheras alquiladas. Estos podrán hacer uso del portón de acceso y la cochera designada.</p>
+        <p>Queda terminantemente prohibido el ingreso de cualquier otro vehículo no autorizado.</p>
+      </div>
+    </div>
+
+    
+
+    <div id="newEventModal" >
+      <h2>¿Que turno le gustaria reservar?</h2>
+
+      <div id="eventOptions">
+
+      </div>
+      <input id="eventTitleInput" placeholder="Turno a elegir" readonly />
+      
+      <div id="existingEvents">
+        <h3>Turnos reservados:</h3>
+        <ul id="eventList">
+          <!-- Los detalles de los eventos se llenarán aquí -->
+        </ul>
+      </div>
+      <div id="botonera">
+        <button id="saveButton">Guardar</button>
+        <button id="cancelButton">Cancelar</button>
+      </div>
+    </div>
+
+    
+
+    <div id="modalBackDrop"></div>
+    
+    <div id="errorModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p id="errorMessage"></p>
+      </div>
+    </div>
+    
+    <div id="messageBox">
+      <div id="messageBoxHeader">
+        <span>Ingrese sus nuevos datos y confirme su contraseña</span>
+      </div>
+      <div id="messageBoxDatos">
+        <input id="datosConfig">
+        <input id="passConfig" type="password" placeholder="Ingrese su contraseña">
+      </div>
+      <div id="botonera">
+        <button id="saveButtonConfig">Guardar</button>
+        <button id="cancelButtonConfig">Cancelar</button>
+      </div>
+    </div>
+
+    <div id="loading-spinner" class="spinner" style="display: none;">
+      <!-- Aquí puedes poner un spinner, imagen o texto de carga -->
+      <div class="loader"></div>
+    </div>
+
+    <script src="{{ url_for('static', filename='front/calendar.js') }}"></script>
+    <script src="{{ url_for('static', filename='front/scripst.js') }}"></script>
+
+    <script>
+      
+    document.addEventListener("DOMContentLoaded", function() {
+      var body = document.body;
+      const aspectRatio = window.innerWidth / window.innerHeight;
+
+      if (aspectRatio > 1) { // Relación de aspecto horizontal
+        body.style.backgroundImage = "url('{{ url_for('static', filename='imagenes/quincho.jfif') }}')";
+      } else { // Relación de aspecto vertical
+        body.style.backgroundImage = "url('{{ url_for('static', filename='imagenes/fuego.jfif') }}')";
+      }
+    });
+    </script>
+  </body>
+</html>

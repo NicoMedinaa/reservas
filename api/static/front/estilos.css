@@ -1,0 +1,631 @@
+body {
+  display: flex;
+  margin-top: 90px;
+  justify-content: center;
+  background-color: #FFFCFF;
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+button {
+  max-width: 75px;
+  cursor: pointer;
+  box-shadow: 0px 0px 2px gray;
+  border: none;
+  outline: none;
+  padding: 5px;
+  border-radius: 5px;
+  color: white;
+  margin-right: 5px;
+  background-color:#92a1d1;
+}
+
+
+
+#nextButton {
+  margin-right: 0;
+}
+
+#cancelarButton {
+  width: fit-content;
+  display: none;
+  background-color: red;
+}
+
+#eventOptions{
+  flex-direction: row;
+  display: flex;
+}
+
+#botonera{
+  flex-direction: row;
+  display: flex;
+}
+
+#botonera i {
+  display: none;
+}
+
+#header {
+  padding: 10px;
+  color: #d36c6c;
+  font-size: 26px;
+  font-family: sans-serif;
+  display: flex;
+  justify-content: space-between;
+}
+
+#container {
+  max-width: 770px;
+  width: 100%;
+}
+#weekdays {
+  width: 100%;
+  display: flex;
+  color: #247BA0;
+}
+#weekdays div {
+  width: 100px;
+  padding: 10px;
+}
+#calendar {
+  width: 100%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+.day {
+  width: calc(100% / 7 - 10px);
+  padding: 10px;
+  aspect-ratio: 1 / 1;
+  cursor: pointer;
+  box-sizing: border-box;
+  background-color: white;
+  margin: 5px;
+  box-shadow: 0px 0px 3px #CBD4C2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.day:hover {
+  background-color: #e8faed;
+}
+
+.day + #currentDay {
+  background-color:#e8f4fa;
+}
+.event {
+  font-size: 10px;
+  padding: 3px;
+  background-color: #58bae4;
+  color: white;
+  border-radius: 5px;
+  max-height: 55px;
+  overflow: hidden;
+}
+.padding {
+  cursor: default !important;
+  background-color: #FFFCFF !important;
+  box-shadow: none !important;
+}
+#newEventModal {
+  display: none;
+  z-index: 20;
+  padding: 25px;
+  background-color: #e8f4fa;
+  box-shadow: 0px 0px 3px black;
+  border-radius: 5px;
+  max-width: 350px;
+  width: 80%;
+  top: 100px;
+  left: calc(50% - 175px);
+  position: absolute;
+  font-family: sans-serif;
+}
+#eventTitleInput {
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 25px;
+  border-radius: 3px;
+  outline: none;
+  border: none;
+  box-shadow: 0px 0px 3px gray;
+}
+#eventTitleInput.error {
+  border: 2px solid red;
+}
+#datosConfig.error {
+  border: 2px solid red;
+}
+#passConfig.error {
+  border: 2px solid red;
+}
+
+#cancelButton {
+  background-color: #d36c6c;
+}
+#saveButton, #closeButton {
+  background-color: #92a1d1;
+}
+#eventText {
+  font-size: 14px;
+}
+#modalBackDrop {
+  display: none;
+  top: 0px;
+  left: 0px;
+  z-index: 10;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  background-color: rgba(0,0,0,0.8);
+}
+
+.modal {
+  display: none; /* Oculto por defecto */
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 500px;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#navbar {
+  position: fixed;
+  cursor: pointer;
+  top: 0;
+  width: 100%;
+  background-color: #92a1d1;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+  display: inline-flex;
+  justify-content: center;
+  padding: 10px 20px;
+  font-family: sans-serif;
+  color: white;
+}
+
+#navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+#navbar ul li {
+  margin-right: 20px;
+}
+
+#navbar ul li a {
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+  transition: color 0.3s ease;
+}
+
+#navbar ul li a:hover {
+  color: #d36c6c;
+}
+
+#navbar ul li i {
+  display: none;
+}
+
+#settingsSection {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
+  font-family: sans-serif;
+}
+
+#settingsSection h2 {
+  color: #247BA0;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+#settingsForm {
+  display: flex;
+  flex-direction: column;
+}
+
+#settingsForm label {
+  font-size: 16px;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+#settingsForm input[type="text"],
+#settingsForm input[type="email"] {
+  padding: 10px;
+  border-radius: 3px;
+  border: 1px solid #ddd;
+  box-shadow: 0px 0px 2px gray;
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+
+#settingsForm input[type="text"]:focus,
+#settingsForm input[type="email"]:focus {
+  border-color: #92a1d1;
+  outline: none;
+}
+
+#settingsForm button {
+  background-color: #92a1d1;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0px 0px 2px gray;
+  transition: background-color 0.3s ease;
+}
+
+#settingsForm button:hover {
+  background-color: #84a3d1;
+}
+
+#settingsForm button:focus {
+  outline: none;
+}
+
+#messageBox {
+  display: none;
+  position: fixed;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+  max-width: 400px;
+  margin: auto;
+}
+
+#messageBoxHeader {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 15px;
+  text-align: center;
+  font-weight: bold;
+}
+
+#messageBoxDatos {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+#messageBoxDatos input {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#messageBoxDatos input:focus {
+  border-color: #247BA0;
+  box-shadow: inset 0px 1px 5px rgba(0, 0, 0, 0.2);
+  outline: none;
+}
+
+.spinner {
+  position: fixed;
+  top: 34%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+}
+
+.loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+
+
+
+#configuraciones {
+  background-color: #f0f0f0; /* Fondo claro */
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 500px;
+  margin: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para darle relieve */
+
+}
+
+/* Título de la sección */
+#configuraciones h2 {
+  font-size: 24px;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Estilo para los detalles del usuario */
+.userDetail {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #fff; /* Fondo blanco para cada detalle */
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.05);
+  justify-content: space-evenly;
+}
+
+/* Estilo para los textos */
+.userDetail span {
+  font-size: 16px;
+  color: #333; /* Texto oscuro */
+}
+
+/* Estilo para los botones */
+.userDetail button {
+  background-color: #4CAF50; /* Botón verde */
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.userDetail button:hover {
+  background-color: #45a049; /* Cambiar color al pasar el cursor */
+}
+
+/* Botón para cambiar contraseña */
+/* Botón para cambiar contraseña */
+#editPass {
+  background-color: #ff9800;
+  color: white;
+  border: none;
+  padding: 10px 15px; /* Ajusta el padding para dar más espacio al texto */
+  width: 100%; /* O puedes usar un valor como 'auto' si prefieres no ocupar todo el ancho */
+  max-width: 300px; /* Puedes limitar el ancho máximo si el 100% es muy grande */
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+  white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+  text-align: center; /* Centra el texto */
+  transition: background-color 0.3s ease;
+}
+
+#editPass:hover {
+  background-color: #e68a00;
+}
+
+/* Sombra para los textos */
+.userDetail span {
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Sombra suave */
+}
+
+#reglamentoContainer {
+  background-color: rgba(255, 255, 255, 0.8); /* Fondo semitransparente */
+  padding: 20px;
+  margin: 20px auto;
+  border-radius: 10px;
+  max-width: 900px; /* Ajusta el ancho del reglamento */
+  overflow-y: auto; /* Habilitar el scroll si es necesario */
+  max-height: 80vh; /* Limitar el alto para que no cubra toda la pantalla */
+}
+
+#reglamentoContainer h1, h2 {
+  color: #2c3e50;
+}
+
+#reglamentoContainer ul {
+  margin: 10px 0;
+  padding-left: 20px;
+}
+#reglamentoContainer li {
+  margin-bottom: 10px;
+}
+#reglamentoContainer p {
+  margin: 10px 0;
+}
+.section-title {
+  margin-top: 20px;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@media (max-width: 768px) {
+  #weekdays div, .day {
+    width: calc(100% / 7 - 10px); /* Ajuste para pantallas medianas */
+  }
+
+
+}
+
+@media (max-width: 530px) {
+  #weekdays div, .day {
+    padding: 1%;
+  }
+
+
+  #navbar ul li i {
+    display: inline-block;
+  }
+
+  #navbar a span {
+    display: none;
+  }
+
+  #botonera button span {
+    display: none;
+  }
+
+  #botonera button i {
+    display: inline;
+  }
+
+  #newEventModal{
+    left: 0%;
+  }
+}
+
+@media (max-width: 420px) {
+  table, thead, tbody, th, td, tr {
+      display: block;
+  }
+
+  /* Ocultar el encabezado de la tabla en dispositivos pequeños */
+  thead tr {
+      display: none;
+  }
+
+  /* Estilo para las filas de la tabla en dispositivos pequeños */
+  tr {
+      margin-bottom: 15px;
+      border-bottom: 1px solid #ddd;
+  }
+
+  /* Mostrar etiquetas para cada celda en dispositivos pequeños */
+  td {
+      display: flex;
+      justify-content: space-between;
+      padding-left: 50%;
+      position: relative;
+      text-align: right;
+  }
+
+  /* Mostrar la etiqueta de la celda */
+  td::before {
+      content: attr(data-label);
+      position: absolute;
+      left: 0;
+      width: 45%;
+      padding-left: 15px;
+      font-weight: bold;
+      text-align: left;
+  }
+}
+
+#containerGastos {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Encabezado */
+#containerGastosHeader h2 {
+  text-align: center;
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* Estilos para los selectores */
+label {
+  font-size: 16px;
+  margin-right: 8px;
+  color: #333;
+}
+
+select {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  margin-right: 10px;
+  margin-bottom: 15px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+select:focus {
+  border-color: #4CAF50;
+}
+
+/* Contenedor de la tabla */
+#table-container {
+  margin-top: 20px;
+}
+
+/* Estilos de la tabla */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+th, td {
+  text-align: left;
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+  color: #333;
+  font-weight: bold;
+}
+
+td[contenteditable="true"] {
+  background-color: #fff7e6;
+}
+
+tr:hover td {
+  background-color: #f1f1f1;
+}

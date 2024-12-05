@@ -1,0 +1,110 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+main {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+p#token {
+    display: none;  /* Ocultar el párrafo que contiene el token */
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+button {
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #28a745;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+.modal {
+    display: none; /* Oculta el modal por defecto */
+    position: fixed; /* Fija la posición del modal en la ventana */
+    z-index: 1000; /* Se asegura de que el modal esté por encima de otros elementos */
+    left: 0;
+    top: 0;
+    width: 100%; /* Ocupa todo el ancho de la ventana */
+    height: 100%; /* Ocupa todo el alto de la ventana */
+    overflow: auto; /* Permite hacer scroll si el contenido es mayor al alto de la ventana */
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
+    backdrop-filter: blur(4px); /* Desenfoque en el fondo (opcional) */
+}
+
+/* Estilo para el contenido del modal */
+.modal-content {
+    background-color: #fff; /* Fondo blanco para el contenido */
+    margin: 15% auto; /* Margen superior e inferior para centrarlo verticalmente */
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 8px; /* Bordes redondeados */
+    width: 80%; /* Ancho del modal */
+    max-width: 500px; /* Ancho máximo del modal */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para dar efecto de elevación */
+    animation: fadeIn 0.3s; /* Animación de entrada */
+}
+
+/* Animación de entrada */
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+/* Estilo para el botón de cierre */
+.close {
+    color: #aaa;
+    float: right; /* Flota a la derecha */
+    font-size: 28px; /* Tamaño del texto */
+    font-weight: bold; /* Negrita */
+    cursor: pointer; /* Apunta como puntero */
+}
+
+/* Cambia de color cuando se pasa el cursor sobre el botón de cierre */
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Estilo para el mensaje de error */
+#errorMessage {
+    margin-top: 15px;
+    font-size: 16px;
+    color: #ff0000; /* Rojo para mensajes de error */
+    text-align: center; /* Centramos el texto */
+}
+
+#nuevaContraseña.error {
+    border: 2px solid red;
+}
+#nuevaContraseña2.error {
+    border: 2px solid red;
+}

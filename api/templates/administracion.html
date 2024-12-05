@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edificio 325</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin/estilos.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='imagenes/favicon.ico') }}" type="image/x-icon">
+</head>
+<body>
+    <nav id="navbar">
+        <ul>
+            <li><a id="reservasLink"><span>Reservas</span><i class="fa-solid fa-hotel"></i></a></li>
+            <li><a id="documentosLink"><span>Documentos</span><i class="fa-solid fa-id-card-clip"></i></a></li>
+            <li><a id="gastosLink"><span>Gastos Comunes</span></a><i class="fa-solid fa-money-bill"></i></li>
+            <li><a id="sesionLink"><span>Cerrar sesión</span></i><i class="fa-solid fa-right-from-bracket"></i></a></li>
+        </ul>
+    </nav>
+
+    <div id="container">
+
+        <div id="reservasContainer" style="display: none;">
+            <h2>Configuración de las reservas</h2>
+            <div id="conteinerCategorias">
+              <div id="categoriaDetalles">
+                <div>
+                  <span>Horario:</span>
+                  <span id="horarioDisplay1"></span>
+                </div>
+                <div>
+                  <span>Precio:</span>
+                  <span id="precioDisplay1"></span>
+                </div>
+                <button id="editCategoria1">Editar</button>
+              </div>
+    
+              <div id="categoriaDetalles">
+                <div>
+                  <span>Horario:</span>
+                  <span id="horarioDisplay2"></span>
+                </div>
+                <div>
+                  <span>Precio:</span>
+                  <span id="precioDisplay2"></span>
+                </div>
+                <button id="editCategoria2">Editar</button>
+              </div>
+            </div>
+        </div>
+
+        <div id="containerDocumento" style="display: none;">
+            <div id="containerDniHeader">
+                <h2>Documentos autorizados</h2>
+            </div>
+            <button id="agregarDni">Agregar</button>
+            <div id="containerDni"></div>
+        </div>
+
+        <div id="containerGastos" style="display: none;">
+          <div id="containerGastosHeader">
+            <h2>Gastos Comunes</h2>
+          </div>
+          <button id="agregarRubro">Agregar Rubro</button>
+
+          <label for="month-select">Mes:</label>
+          <select id="month-select">
+              <option value="">Seleccionar Mes</option>
+              <option value="1">Enero</option>
+              <option value="2">Febrero</option>
+              <option value="3">Marzo</option>
+              <option value="4">Abril</option>
+              <option value="5">Mayo</option>
+              <option value="6">Junio</option>
+              <option value="7">Julio</option>
+              <option value="8">Agosto</option>
+              <option value="9">Septiembre</option>
+              <option value="10">Octubre</option>
+              <option value="11">Noviembre</option>
+              <option value="12">Diciembre</option>
+          </select>
+
+          <label for="year-select">Año:</label>
+          <select id="year-select">
+              <option value="">Seleccionar Año</option>
+          </select>
+
+          <button id="generate-table">Generar Tabla</button>
+
+          <div id="table-container"></div>
+
+          <button id="saveTable">Guardar Tabla</button>
+        </div>
+
+    </div>
+
+    <div id="messageBoxCategoria">
+        <div id="messageBoxCategoriaHeader">
+          <span>Ingrese los nuevos datos para la reserva, en caso de no querer modificar uno de los datos, deje el campo vacio</span>
+        </div>
+        <div id="messageBoxCategoriaDatos">
+          <input id="categoriaConfigNombre" placeholder="Ingrese el nuevo nombre">
+          <input id="categoriaConfigPrecio" placeholder="Ingrese el nuevo precio">
+        </div>
+        <div id="botonera">
+          <button id="saveButtonCategoriaConfig">Guardar</button>
+          <button id="cancelButtonCategoriaConfig">Cancelar</button>
+        </div>
+    </div>
+
+    <div id="agragarDocumento">
+        <input id="nuevoDocumento" type="number" placeholder="Ingrese un nuevo documento">
+        <div id="botonera">
+          <button id="saveDocumento">Guardar</button>
+          <button id="cancelDocumento">Cancelar</button>
+        </div>
+    </div>
+
+    <div id="agragarRubro">
+      <input id="nombreRubro" type="text" placeholder="Ingrese el nombre del rubro">
+      <input id="descRubro" type="text" placeholder="Ingrese una descripción">
+      <div id="botonera">
+        <button id="saveRubro">Guardar</button>
+        <button id="cancelRubro">Cancelar</button>
+      </div>
+    </div>
+
+    <div id="editarRubro">
+      <input id="nombreEditarRubro" type="text" placeholder="Ingrese el nombre del rubro">
+      <div id="botonera">
+        <button id="saveEditarRubro">Guardar</button>
+        <button id="cancelEditarRubro">Cancelar</button>
+      </div>
+    </div>
+
+
+
+    <div id="errorModal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <p id="errorMessage"></p>
+        </div>
+    </div>
+
+    <div id="loading-spinner" class="spinner" style="display: none;">
+        <!-- Aquí puedes poner un spinner, imagen o texto de carga -->
+        <div class="loader"></div>
+    </div>
+
+    <script src="{{ url_for('static', filename='admin/admin.js') }}"></script>
+
+    <script>
+      
+        document.addEventListener("DOMContentLoaded", function() {
+          var body = document.body;
+          const aspectRatio = window.innerWidth / window.innerHeight;
+    
+          if (aspectRatio > 1) { // Relación de aspecto horizontal
+            body.style.backgroundImage = "url('{{ url_for('static', filename='imagenes/quincho.jfif') }}')";
+          } else { // Relación de aspecto vertical
+            body.style.backgroundImage = "url('{{ url_for('static', filename='imagenes/fuego.jfif') }}')";
+          }
+        });
+    </script>
+</body>
+</html>
